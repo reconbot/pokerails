@@ -43,3 +43,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "graphql", "~> 1.10"
 
 gem 'graphiql-rails', group: :development
+gem "rspec-rails", "~> 4.0", :groups => [:development, :test]
+
+gem "factory_bot_rails", "~> 5.2", :groups => [:development, :test]
+
+gem "faker", "~> 2.11", :groups => [:development, :test]
