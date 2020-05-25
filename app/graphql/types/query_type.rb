@@ -7,5 +7,10 @@ module Types
     def pokemon
       Pokemon.all
     end
+
+    field :trainers, [Types::UserType], null: false, description: "All the Trainers"
+    def trainers
+      User.all
+    end
   end
 end

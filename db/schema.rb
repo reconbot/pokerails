@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_202251) do
+ActiveRecord::Schema.define(version: 2020_05_25_014857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "captures", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "pokemon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id"], name: "index_captures_on_pokemon_id"
+    t.index ["user_id"], name: "index_captures_on_user_id"
+  end
 
   create_table "pokemons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "pokedex_number", null: false
@@ -26,4 +35,13 @@ ActiveRecord::Schema.define(version: 2020_05_24_202251) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "captures", "pokemons"
+  add_foreign_key "captures", "users"
 end

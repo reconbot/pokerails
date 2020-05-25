@@ -38,6 +38,7 @@ module Pokerails
       g.javascripts     false
       g.helper          false
       g.channel         assets: false
+      g.orm :active_record, primary_key_type: :uuid
     end
   end
 end
